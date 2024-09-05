@@ -1,5 +1,5 @@
 import numpy as np
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 # Values for Johnson UBVRI+ photometric system
 bands = np.array(['U','B','V','R','I','J','H','K','L','M','N','O'])
@@ -9,21 +9,27 @@ magnitude = np.array([-2.38e-5, 1.49e-4, -7.18e-5, 3.69e-4, -8.24e-5, -7.9e-4, -
 
 # Print values
 for b,f,w,m in zip(bands, flux_density, eff_wavelength, magnitude):
-    print(f"{b} {f} {w} {m}")
+    print(f"{b}     {f}     {w}     {m}")
 
 
-# Plots
-fig, axes = plt.subplots(1, 2, figsize=(10,4), dpi=250)
-for ax in axes:
+# Plot
+fig, axes = plt.subplots(1, 2, figsize=(13,4), dpi=150)
+for i,ax in enumerate(axes):
     ax.set_xlabel("Wavelength [microns]")
-    ax.text()
+    # Adding band labels
+    for x,y,label in zip(eff_wavelength, [magnitude,flux_density][i], bands):
+        ax.text(x+0.035,y,label)
 
 # Fig 1 (left panel) - The magnitude of each filter UBVRIJHK versus wavelength
-axes[0].scatter(magnitude, eff_wavelength, color='k')
+axes[0].scatter(eff_wavelength, magnitude, color='k', s=12)
 axes[0].set_ylabel("Magnitude")
-axes[0].set_title("The magnitude of each filter UBVRIJHK versus wavelength")
+axes[0].set_title("Magnitude of Vega in Different Johnson Bands")
 
 # Fig 2 (right panel) - Monochromatic Flux density at each filter versus wavelength
-axes[1].scatter(magnitude, eff_wavelength, color='k')
-axes[1].set_ylabel("Magnitude")
-axes[1].set_title("The magnitude of each filter UBVRIJHK versus wavelength")
+axes[1].scatter(eff_wavelength, flux_density, color='k', s=12)
+axes[1].set_ylabel(r"Flux density [$W m^{-2} micron^{-1}$]")
+axes[1].set_title("Monochromatic Flux Density of Vega\nin Different Johnson Bands")
+
+# Other plot parameters
+plt.savefig("conversion_plot.pdf")
+plt.show()
