@@ -15,3 +15,5 @@ plt.savefig("magnitude_plot.pdf")
 plt.show()
 
 # Brightness ratio
+bright_ratio = 100**((30-16)/5)
+print(f"Brightness ratio: {bright_ratio:.3e}")
