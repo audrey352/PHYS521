@@ -23,7 +23,7 @@ for i,ax in enumerate(axes):
 # Fig 1 (left panel) - The magnitude of each filter UBVRIJHK versus wavelength
 axes[0].scatter(eff_wavelength, magnitude, color='k', s=12)
 axes[0].set_ylabel("Magnitude")
-axes[0].set_title("Absolute Magnitude of Vega in Different Johnson Bands")
+axes[0].set_title("Magnitude of Vega in Different Johnson Bands")
 
 # Fig 2 (right panel) - Monochromatic Flux density at each filter versus wavelength
 axes[1].scatter(eff_wavelength, flux_density, color='k', s=12)
