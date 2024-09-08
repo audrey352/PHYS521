@@ -7,12 +7,12 @@ import numpy as np
 
 def plot_vis(coordinates):
     # Montreal location and times
-    mtl = EarthLocation(lat=45.5019*u.deg, lon=-73.5674*u.deg, height=45*u.m) # approximatingf average altitude as 45m
+    mtl = EarthLocation(lat=45.5019*u.deg, lon=-73.5674*u.deg, height=45*u.m) # approximating average altitude as 45m
     times_sept13 = '2024-09-13 '+np.array(['19','20','21', '22', '23'])+':00:00'
     times_sept14 = '2024-09-14 '+np.array(['00', '01', '02', '03', '04', '05', '06'])+':00:00'
     obs_time = Time((np.concatenate((times_sept13,times_sept14))))
     
-    # Convert object coordinates to mtl frame
+    # Convert M33 coordinates to mtl frame
     altaz_frame = AltAz(obstime=obs_time, location=mtl)
     coords_altaz = coordinates.transform_to(altaz_frame)  # get alt & az of M33 at given times
 
