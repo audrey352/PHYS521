@@ -12,7 +12,7 @@ def plot_vis(coordinates):
     times_sept14 = '2024-09-14 '+np.array(['00', '01', '02', '03', '04', '05', '06'])+':00:00'
     obs_time = Time((np.concatenate((times_sept13,times_sept14))))
     
-    # Convert M33 coordinates to mtl frame
+    # Convert object coordinates to mtl frame
     altaz_frame = AltAz(obstime=obs_time, location=mtl)
     coords_altaz = coordinates.transform_to(altaz_frame)  # get alt & az of M33 at given times
 
@@ -21,7 +21,7 @@ def plot_vis(coordinates):
     plt.scatter(obs_time.datetime, coords_altaz.alt.deg, color='k')
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m-%d %H'))
     plt.xticks(rotation=90)
-    plt.title(f"Visibility of M33 (ra = {coordinates.ra.deg}, dec = {coordinates.dec.deg})\nfrom Montreal, 13-09-2024")
+    plt.title(f"Visibility of M33 (ra = {coordinates.ra.deg}, dec = {coordinates.dec.deg})\nfrom Montreal, 2024-09-13")
     plt.xlabel("Time [UCT]")
     plt.ylabel("Altitude [deg]")
     plt.tight_layout()
