@@ -8,7 +8,7 @@ eff_wavelength = np.array([0.36, 0.43, 0.55, 0.70, 0.90, 1.25, 1.60, 2.22, 3.54,
 magnitude = np.zeros(bands.size)
 
 # Print values
-for b,f,w,m in zip(bands, flux_density, eff_wavelength, magnitude):
+for b,f,w in zip(bands, flux_density, eff_wavelength):
     print(f"{b}     {f:.2e}     {w:.2}")
 
 

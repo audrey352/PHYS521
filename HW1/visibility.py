@@ -1,5 +1,5 @@
 from astropy import units as u
-from astropy.time import Time
+from astropy.time import Time, TimeDelta
 from astropy.coordinates import SkyCoord, EarthLocation, AltAz
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
@@ -8,9 +8,10 @@ import numpy as np
 def plot_vis(coordinates):
     # Montreal location and times
     mtl = EarthLocation(lat=45.5019*u.deg, lon=-73.5674*u.deg, height=45*u.m) # approximating average altitude as 45m
+    # EST times
     times_sept13 = '2024-09-13 '+np.array(['19','20','21', '22', '23'])+':00:00'
     times_sept14 = '2024-09-14 '+np.array(['00', '01', '02', '03', '04', '05', '06'])+':00:00'
-    obs_time = Time((np.concatenate((times_sept13,times_sept14))))
+    obs_time = Time((np.concatenate((times_sept13,times_sept14)))) + TimeDelta(4*u.hour)  # convert to UTC for astropy
     
     # Convert M33 coordinates to mtl frame
     altaz_frame = AltAz(obstime=obs_time, location=mtl)
@@ -22,7 +23,7 @@ def plot_vis(coordinates):
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%m-%d %H'))
     plt.xticks(rotation=90)
     plt.title(f"Visibility of M33 (ra = {coordinates.ra.deg}, dec = {coordinates.dec.deg})\nfrom Montreal, 2024-09-13")
-    plt.xlabel("Time [UCT]")
+    plt.xlabel("UTC Time")
     plt.ylabel("Altitude [deg]")
     plt.tight_layout()
     plt.savefig("visibility_plot.pdf")
