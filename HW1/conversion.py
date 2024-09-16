@@ -31,5 +31,5 @@ axes[1].set_ylabel(r"Flux density [$W m^{-2} micron^{-1}$]")
 axes[1].set_title("Monochromatic Flux Density of Vega\nin Different Johnson Bands")
 
 # Other plot parameters
-plt.savefig("conversion_plot.pdf")
+plt.savefig("Users/audrey/Documents/PHYS521/HW1/conversion_plot.pdf")
 plt.show()

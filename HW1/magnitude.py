@@ -11,7 +11,7 @@ plt.yscale('log')
 plt.title("Magnitude Difference as a Function of Flux Ratio")
 plt.xlabel("Magnitude Difference")
 plt.ylabel("Flux Ratios")
-plt.savefig("magnitude_plot.pdf")
+plt.savefig("Users/audrey/Documents/PHYS521/HW1/magnitude_plot.pdf")
 plt.show()
 
 # Brightness ratio

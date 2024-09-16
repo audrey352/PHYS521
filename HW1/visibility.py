@@ -26,7 +26,7 @@ def plot_vis(coordinates):
     plt.xlabel("UTC Time")
     plt.ylabel("Altitude [deg]")
     plt.tight_layout()
-    plt.savefig("visibility_plot.pdf")
+    plt.savefig("Users/audrey/Documents/PHYS521/HW1/visibility_plot.pdf")
     plt.show()
 
 # values from https://simbad.u-strasbg.fr/simbad/sim-id?Ident=M33

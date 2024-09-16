@@ -5,7 +5,7 @@ import scipy
 # constants
 h = scipy.constants.Planck  # 6.626e-34 Js
 c = scipy.constants.c  # 3.0e8 m/s
-k = scipy.constants.Boltzmann  # 1.38e-23 J/K  
+k = scipy.constants.Boltzmann  # 1.38e-23 J/K
 
 
 def planck_fxn(T, wavelengths):
@@ -25,7 +25,7 @@ def plot_planck(T):
     plt.xlabel('Wavelength [nm]')
     plt.ylabel(r'$I_\lambda$ [$erg\ cm^{-2} s^{-1} nm^{-1} sr^{-1}$]')
     plt.legend()
-    plt.savefig('planck_function.png')
+    plt.savefig('/Users/audrey/Documents/PHYS521/HW2/planck_function.png')
     plt.show()
 
 
