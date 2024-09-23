@@ -26,7 +26,7 @@ def plot_planck(T):
     plt.xlabel('Wavelength [nm]')
     plt.ylabel(r'$I_\lambda$ [$erg\ cm^{-2} s^{-1} nm^{-1} sr^{-1}$]')
     plt.legend()
-    plt.savefig('planck_function.png')
+    plt.savefig('planck_function_plot.png')
     plt.show()
 
 def integ_planck(T):
@@ -38,7 +38,7 @@ def integ_planck(T):
 # Question 1
 # Plot the Planck function for different T values
 T = [2500, 3000, 3500, 4000, 4500, 5000]
-# plot_planck(T)
+plot_planck(T)
 
 # Question 3
 T = 6000  # K
