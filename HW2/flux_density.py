@@ -42,5 +42,5 @@ fig.supxlabel('Wavelength [nm]')
 for ax in axes:
     ax.legend()
 plt.tight_layout()
-plt.savefig('/Users/audrey/Documents/PHYS521/HW2/flux_density.png')
+plt.savefig('flux_density.png')
 plt.show()
