@@ -60,10 +60,3 @@ n = np.array([1,2,3,4,5,1e6])
 tr_start = np.array([2,3,4,5,4,1e6,1e6])
 tr_end = np.array([1,2,2,2,3,1,2])
 energy_diagram(n, tr_start, tr_end)
-
-# Emitted wavelengths
-# wavelengths = emit_wavelength(tr_start, tr_end)
-# for start,end,l in zip(tr_start,tr_end,wavelengths):
-#     start_label = f'inf' if start>1e4 else f'{start:.0f}'
-#     end_label = f'inf' if end>1e4 else f'{end:.0f}'
-#     print(f'{start_label} - {end_label}: {l:.2f} nm')
