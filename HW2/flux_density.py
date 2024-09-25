@@ -24,7 +24,6 @@ def planck_fxn(T, wavelengths):
 wavelengths = np.linspace(eff_wavelength[0], eff_wavelength[-1], 3000)  # nm
 T = [2000, 3000, 4000, 5000, 6000, 10000]  # K
 
-
 # Plot
 fig, axes = plt.subplots(1, 2, figsize=(13,4), dpi=150)
 # Left panel - Vega's flux density

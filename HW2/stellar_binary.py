@@ -1,10 +1,17 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Functions
 def get_period(M,n):
-    return (M **((n-1)/(n+3) - 1/3)) **(3/2)
+    """
+    calculate period for values of M and a given value of n
+    """
+    return 2.1**(-3/2) * (M **((n-1)/(n+3) - 1/3)) **(3/2)
 
 def plot_period(n_arr):
+    """
+    plot period as a function of mass for a given n value
+    """
     # Calculate values
     M = np.linspace(0.1, 200, 100)  # in solar mass units
     P = np.array([get_period(M,n) for n in n_arr])  # in days
@@ -26,8 +33,13 @@ def plot_period(n_arr):
     plt.show()
 
 def get_mass(P,n):
+    """
+    calculate mass for a given period and n value
+    """
     m = (n-1)/(n+3) - 1/3  # calculaitng part of the exponent
-    return P **(2/3 * 1/m)
+    print(2/3 * 1/m)
+    return (P * 2.1**(3/2)) **(2/3 * 1/m)
+
 
 # Question 6c
 n_arr = np.array([4,19])
