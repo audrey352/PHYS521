@@ -1,7 +1,4 @@
-#!/usr/bin/python
-
 from matplotlib import pyplot as plt
-from numpy import *
 import pylab
 import numpy as np
 import math
