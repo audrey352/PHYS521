@@ -1,9 +1,5 @@
 import os
 from matplotlib import pyplot as plt
-# from numpy import *
-# from pylab import *
-# from scipy import *
-
 import math
 import pylab
 import numpy as np
@@ -22,48 +18,67 @@ for file in os.scandir(dir_path+'Pickles'):
         if name in ['B5V', 'B8V', 'O9V']:
             continue
         # Read the data into dicts
-        l,f = np.loadtxt(file, delimiter=' ', unpack=True)
+        l,f = np.genfromtxt(file, delimiter=' ', unpack=True)
         lambda_dict[name] = l
         flux_dict[name] = f
 
 
 # Plots
 spectral_types = ['O5V', 'B3V', 'A0', 'F0', 'G0', 'K0', 'M0']
-scaling_arr = [2, 1, 10, 100, 1000, 10000, 1000000]
+
+def plot_lambda_flux(fig_num, spectral_types=spectral_types, lambda_dict=lambda_dict,flux_dict=flux_dict,
+                     scaling_arr=np.ones(100), yscale='log'):
+    fig = plt.figure(figsize=(10, 6), dpi=150)
+    # plt.subplots_adjust(hspace=.5)
+    # plt.subplot(211)
+
+    # Extra things for figure 3
+    if fig_num == 3:
+        # Axes
+        plt.xlim(350,800)
+        plt.ylim(0,8)
+        yscale = 'linear'
+        # Normalizing by the average flux
+        scaling_arr = np.array([np.mean(flux_dict[type]) for type in spectral_types])
+        # Adding H alpha line
+        plt.axvline(656.28, linestyle=':', color='k', label=r'H$\alpha$')
+
+    # Plot Data
+    for type, scaling in zip(spectral_types, scaling_arr):
+        plt.plot(lambda_dict[type],flux_dict[type]/scaling, linewidth=2, label=type)
+
+    # Labels & axes
+    plt.xlabel(r'$\lambda$ [nm]')
+    plt.ylabel(r'Flux$_{\lambda}$')
+    plt.yscale(yscale)
+    plt.title(f'HW #3, Prob 1, Fig {fig_num}: Spectral Types', fontsize=15)
+    plt.legend(loc='upper right')
+
+    # Save
+    plt.savefig(dir_path+f'q1_fig{fig_num}.png')
+    plt.show()
+
+
 
 # Figure 1
-fig = plt.figure(num=1, figsize=(10, 6), dpi=150)
-# plt.subplots_adjust(hspace=.5)
-# plt.subplot(211)
-for type in spectral_types:
-    plt.plot(lambda_dict[type],flux_dict[type], linewidth=2, label=type)
-# Labels & axes
-plt.xlabel(r'$\lambda$ [nm]')
-plt.ylabel(r'Flux$_{\lambda}$')
-plt.yscale('log')
-plt.title('HW #3, Prob 1, Fig 1: Spectral Types')
-plt.legend(loc='upper right')
-# Save
-plt.savefig(dir_path+'fig1.png')
-# plt.show()
-plt.close()
+# scaling_arr_1 = np.ones(len(spectral_types))
+plot_lambda_flux(fig_num=1)
 
 # Figure 2
-fig = plt.figure(num=2, figsize=(10, 6), dpi=150)
-# plt.subplot(212)
-for type, scaling in zip(spectral_types, scaling_arr):
-    plt.plot(lambda_dict[type],flux_dict[type]/scaling, linewidth=2, label=type)
-# Labels & axes
-plt.xlabel(r'$\lambda$ [nm]')
-plt.ylabel(r'Flux$_{\lambda}$')
-plt.yscale('log')
-plt.title('HW #3, Prob 1, Fig 2: Spectral Types')
-plt.legend(loc='upper right')
-# Save
-plt.savefig(dir_path+'fig2.png')
-# plt.show()
-plt.close()
+scaling_arr_2 = [2, 1, 10, 100, 1000, 10000, 1000000]
+plot_lambda_flux(fig_num=2, scaling_arr=scaling_arr_2)
 
 
+# Question 1
+# a)
+eff_temps = [39810.7, 19054.6, 9549.93, 7211.08, 5807.64, 5188.00, 3801.89]  # in Kelvins
+eff_temp_dict = {key: t for key, t in zip(spectral_types, eff_temps)}
+print(r'Spectral Type |   T_eff [K]')
+print('-----------------------------')
+for type in eff_temp_dict:
+    print(f'      {type[:2]}      |    {eff_temp_dict[type]}')
 
-
+# c)
+# Figure 3
+scaling_arr_3 = scaling_arr_2
+plot_lambda_flux(fig_num=3, scaling_arr=scaling_arr_3)
