@@ -46,6 +46,7 @@ def plot_ratio(ni, nj, Tk, k=k):
 
     return ratio
 
+# Question 3
 # a)
 ni = 1
 nj = 2

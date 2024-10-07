@@ -66,7 +66,6 @@ def plot_saha(fig_num, P_e_arr, T, ratio_arr, q_num=4):
     plt.savefig(dir_path+f'/figures/q{q_num}_fig{fig_num}.png')
     plt.show()
 
-
 def get_ratio(T, T_arr, ratio_arr):
     """
     Find the ratio of H II / H I at a given temperature T
@@ -117,3 +116,8 @@ ratio_total = Ntotal_ratio(saha_ratio_1)
 # Plot
 plot_saha(fig_num=3, P_e_arr=P_e, T=T, ratio_arr=[ratio_total], q_num=6)
 # Get ratio at T=8000 K
+ratio_T8000 = get_ratio(8000, T, ratio_total)
+print(f'At 8000K: {ratio_T8000*100:.2f} %')
+# Get ratio at 12000 K
+ratio_T12000 = get_ratio(12000, T, ratio_total)
+print(f'At 12000K: {ratio_T12000*100:.2f} %')

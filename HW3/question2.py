@@ -22,6 +22,7 @@ invlam = R * (level2 - leveln)  # balmer formula, inverse wavelength nm-1
 lamda_balmer = 1. / invlam  # convert to wavelength nm
 
 
+# Question 2
 # Figure
 fig = plt.figure(figsize=(10, 6), dpi=150)
 # Data
@@ -40,7 +41,6 @@ plt.legend(loc='upper right')
 # Save
 plt.savefig(dir_path+f'figures/q2_fig1.png')
 # plt.show()
-
 
 # a) wavelength of peak intensity
 peak_predict = wien_cst/T_A0  # Wien's displacement law
