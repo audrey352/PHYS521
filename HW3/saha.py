@@ -39,29 +39,32 @@ def saha(T, P_e, g_r, g_r1, Xi=Xi, m_r=m_e, k=k, h=h):
     
     return first_term * second_term * third_term
 
+def Ntotal_ratio(r):
+    """
+    Calculate the ratio of the total number of atoms to the number of ionized and neutral atoms
+    r = N_ionized / N_neutral
+    """
+    return r / (1+r)
 
-def plot_saha(fig_num, P_e_arr, T, g_r, g_r1, Xi=Xi, m_r=m_e, k=k, h=h):
+def plot_saha(fig_num, P_e_arr, T, ratio_arr, q_num=4):
     """
     Plot the Saha ratio for a range of temperatures T
     """
-    # Calculate the Saha ratios for each input P_e
-    saha_ratios = np.array([saha(T, P_e, g_r, g_r1, Xi=Xi, m_r=m_r, k=k, h=h) for P_e in P_e_arr])
-    
     plt.figure(dpi=150)
     # Data
-    for ratio, P_e in zip(saha_ratios,P_e_arr):
+    for ratio, P_e in zip(ratio_arr,P_e_arr):
         plt.plot(T, ratio, linewidth=2, label=rf'P$_e$ = {P_e}')
     # Labels & other
     plt.xlabel('T [K]')
-    plt.ylabel('H II / H I')
-    plt.yscale('log')
-    plt.legend()
-    plt.title('HW #3, Prob 4: Saha Ionization for Hydrogen')
+    ylabel = r'H II / H$_{total}$' if fig_num==3 else 'H II / H I'
+    plt.ylabel(ylabel)
+    yscale = 'linear' if fig_num==3 else 'log'
+    plt.yscale(yscale)
+    plt.legend(title=r'P$_e$ [dynes/cm$^2$]')
+    plt.title(f'HW #3, Prob {q_num}: Saha Ionization for Hydrogen')
     # Save
-    plt.savefig(dir_path+f'/figures/q4_fig{fig_num}.png')
+    plt.savefig(dir_path+f'/figures/q{q_num}_fig{fig_num}.png')
     plt.show()
-
-    return saha_ratios
 
 
 def get_ratio(T, T_arr, ratio_arr):
@@ -71,7 +74,6 @@ def get_ratio(T, T_arr, ratio_arr):
     index = np.argmin(np.abs(T_arr - T))
     return ratio_arr[index]
 
-
 def get_temp(ratio, T_arr, ratio_arr):
     """
     Find the temperature at which the ratio of H II / H I is equal to a given ratio
@@ -80,24 +82,38 @@ def get_temp(ratio, T_arr, ratio_arr):
     return T_arr[index]
 
 
+# Question 4
 # a)
 print(f'Ionization energy of hydrogen: {-E_1} eV, {Xi:.3e} erg')
 
 # b)
 T = np.linspace(2000, 20000, 100000)
 P_e = [200] # electron pressure in dynes/cm2 for MS star, n_e = P_e ./ (k .* T)
-saha_ratios_1 = plot_saha(fig_num=1, P_e_arr=P_e, T=T, g_r=g_i, g_r1=g_ii)[0]
+# Calculate the Saha ratio
+saha_ratio_1 = saha(T, P_e, g_i, g_ii)
+plot_saha(fig_num=1, P_e_arr=P_e, T=T, ratio_arr=[saha_ratio_1])
 # Finding ratios at different temperatures
-ratio_T2000 = get_ratio(2000, T, saha_ratios_1)
+ratio_T2000 = get_ratio(2000, T, saha_ratio_1)
 print(f'Ratio 2000K: {ratio_T2000}')
-ratio_T6000 = get_ratio(6000, T, saha_ratios_1)
+ratio_T6000 = get_ratio(6000, T, saha_ratio_1)
 print(f'Ratio 6000K: {ratio_T6000}')
-ratio_T10000 = get_ratio(10000, T, saha_ratios_1)
+ratio_T10000 = get_ratio(10000, T, saha_ratio_1)
 print(f'Ratio 10000K: {ratio_T10000}')
 # Find the temperature at which the ratio is 10
-T_ratio10 = get_temp(10, T, saha_ratios_1)
+T_ratio10 = get_temp(10, T, saha_ratio_1)
 print(f'Temperature at which the ratio is 10: {T_ratio10} K')
 
 # c)
 P_e_arr = [20,200,2000]  # in dynes/cm2
-saha_ratios_2 = plot_saha(fig_num=2, P_e_arr=P_e_arr, T=T, g_r=g_i, g_r1=g_ii)
+# Calculate the Saha ratios for each input P_e
+saha_ratio_2 = np.array([saha(T, P_e, g_i, g_ii) for P_e in P_e_arr])
+# Plot
+plot_saha(fig_num=2, P_e_arr=P_e_arr, T=T, ratio_arr=saha_ratio_2)
+
+
+# Question 6
+# Calculate ratio for p_E = 200
+ratio_total = Ntotal_ratio(saha_ratio_1)
+# Plot
+plot_saha(fig_num=3, P_e_arr=P_e, T=T, ratio_arr=[ratio_total], q_num=6)
+# Get ratio at T=8000 K

@@ -5,7 +5,6 @@ import pylab
 import numpy as np
 import scipy.constants as const
 
-
 # Read in Pickles Spectra into arrays
 lambda_dict = {}
 flux_dict = {}
@@ -21,7 +20,6 @@ for file in os.scandir(dir_path+'Pickles'):
         l,f = np.genfromtxt(file, delimiter=' ', unpack=True)
         lambda_dict[name] = l
         flux_dict[name] = f
-
 
 # Plots
 spectral_types = ['O5V', 'B3V', 'A0', 'F0', 'G0', 'K0', 'M0']
@@ -55,7 +53,6 @@ def plot_lambda_flux(fig_num, spectral_types=spectral_types, lambda_dict=lambda_
     # Save
     plt.savefig(dir_path+f'figures/q1_fig{fig_num}.png')
     plt.show()
-
 
 
 # Figure 1
