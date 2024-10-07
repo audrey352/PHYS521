@@ -12,7 +12,7 @@ def binding_energy(n):
     return -13.6/n**2 * const.e  # in J
 
 def get_g(n):
-    """statistical weights that specify the number of sublevels in each n energy level
+    """statistical weight that specify the number of sublevels in energy level n
     """
     # g_n = 2n^2
     return 2 * n**2
@@ -41,7 +41,7 @@ def plot_ratio(ni, nj, Tk, k=k):
     plt.xlabel('Temperature [K]')
     plt.ylabel(r'$n_j/n_i$')
     plt.title(f'Ratio of the number of atoms for a 2-level \nhydrogen atom, with n={ni} and n={nj}')
-    plt.savefig(dir_path+f'q3_boltz_ratio_{ni}_{nj}_{Tk[-1]:.0e}.png')
+    plt.savefig(dir_path+f'figures/q3_boltz_ratio_{ni}_{nj}_{Tk[-1]:.0e}.png')
     plt.show()
 
     return ratio

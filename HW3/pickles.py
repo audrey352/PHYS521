@@ -28,9 +28,7 @@ spectral_types = ['O5V', 'B3V', 'A0', 'F0', 'G0', 'K0', 'M0']
 
 def plot_lambda_flux(fig_num, spectral_types=spectral_types, lambda_dict=lambda_dict,flux_dict=flux_dict,
                      scaling_arr=np.ones(100), yscale='log'):
-    fig = plt.figure(figsize=(10, 6), dpi=150)
-    # plt.subplots_adjust(hspace=.5)
-    # plt.subplot(211)
+    plt.figure(figsize=(10, 6), dpi=150)
 
     # Extra things for figure 3
     if fig_num == 3:
@@ -55,7 +53,7 @@ def plot_lambda_flux(fig_num, spectral_types=spectral_types, lambda_dict=lambda_
     plt.legend(loc='upper right')
 
     # Save
-    plt.savefig(dir_path+f'q1_fig{fig_num}.png')
+    plt.savefig(dir_path+f'figures/q1_fig{fig_num}.png')
     plt.show()
 
 

@@ -38,7 +38,7 @@ plt.title(f'HW #3, Prob 2, Fig 1: Spectrum of the A0 Star with \nRydberg Balmer 
 # Plot
 plt.legend(loc='upper right')
 # Save
-plt.savefig(dir_path+f'q2_fig1.png')
+plt.savefig(dir_path+f'figures/q2_fig1.png')
 # plt.show()
 
 
@@ -62,5 +62,5 @@ plt.axvline(lam_ionize, color='r', linestyle='--', label='Ionization Wavelength'
 plt.title(f'HW #3, Prob 2, Fig 2: Spectrum of the A0 Star with \nRydberg Balmer Formula up to n={n_max}', fontsize=15)
 plt.legend(loc='upper right')
 # Save
-plt.savefig(dir_path+f'q2_fig2.png')
+plt.savefig(dir_path+f'figures/q2_fig2.png')
 plt.show()
