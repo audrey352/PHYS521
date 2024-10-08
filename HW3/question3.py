@@ -30,7 +30,7 @@ def boltz_excite(ni, nj, Tk, k=k):
     # Ratio nj/ni
     return gj/gi * np.exp(-(Ej - Ei)/(k*Tk))
 
-def plot_ratio(ni, nj, Tk, k=k):
+def plot_ratio(ni, nj, Tk, k=k, fig_num=1):
     """Plot the ratio nj/ni for a range of temperatures Tk
     """
     # Boltzmann ratio
@@ -40,8 +40,8 @@ def plot_ratio(ni, nj, Tk, k=k):
     plt.plot(Tk, ratio)
     plt.xlabel('Temperature [K]')
     plt.ylabel(r'$n_j/n_i$')
-    plt.title(f'Ratio of the number of atoms for a 2-level \nhydrogen atom, with n={ni} and n={nj}')
-    plt.savefig(dir_path+f'figures/q3_boltz_ratio_{ni}_{nj}_{Tk[-1]:.0e}.png')
+    plt.title(f'HW #3, Prob 3, Fig {fig_num}: Ratio of the number of atoms for a \n2-level hydrogen atom, with n={ni} and n={nj}')
+    plt.savefig(dir_path+f'figures/q3_fig{fig_num}.png')
     plt.show()
 
     return ratio
@@ -67,4 +67,4 @@ print(f'Temperature at which the ratio n_j/n_i = 0.1: {T_10_percent} K')
 ni = 1
 nj = 2
 T = np.linspace(2000, 1e9, 10000)
-nj_ni_ratio = plot_ratio(ni, nj, T)
+nj_ni_ratio = plot_ratio(ni, nj, T, fig_num=2)
