@@ -15,9 +15,6 @@ E_2 = E_1 / 2**2  # 1st excited state in eV, Xr+1
 Xi = -E_1 * ev_to_erg  # ionization from ground, in erg
 
 # Statistical weights
-# g1 = 2
-# g2 = 6
-# g3 = 10
 g_ii = 2  # for H II
 g_i  = 1  # for H I
 
@@ -41,14 +38,15 @@ def saha(T, P_e, g_r, g_r1, Xi=Xi, m_r=m_e, k=k, h=h):
 
 def Ntotal_ratio(r):
     """
-    Calculate the ratio of the total number of atoms to the number of ionized and neutral atoms
+    Calculate the ratio of the total number of atoms to the 
+    number of ionized and neutral atoms
     r = N_ionized / N_neutral
     """
     return r / (1+r)
 
-def plot_saha(fig_num, P_e_arr, T, ratio_arr, q_num=4):
+def plot_ratio(fig_num, P_e_arr, T, ratio_arr, q_num=4):
     """
-    Plot the Saha ratio for a range of temperatures T
+    Plot the input ratio for a range of temperatures T
     """
     plt.figure(dpi=200)
     # Data
@@ -82,6 +80,7 @@ def get_temp(ratio, T_arr, ratio_arr):
 
 
 # Question 4
+print('Question 4')
 # a)
 print(f'Ionization energy of hydrogen: {-E_1} eV, {Xi:.3e} erg')
 
@@ -90,7 +89,7 @@ T = np.linspace(2000, 20000, 100000)
 P_e = [200] # electron pressure in dynes/cm2 for MS star, n_e = P_e ./ (k .* T)
 # Calculate the Saha ratio
 saha_ratio_1 = saha(T, P_e, g_i, g_ii)
-plot_saha(fig_num=1, P_e_arr=P_e, T=T, ratio_arr=[saha_ratio_1])
+plot_ratio(fig_num=1, P_e_arr=P_e, T=T, ratio_arr=[saha_ratio_1])
 # Finding ratios at different temperatures
 ratio_T2000 = get_ratio(2000, T, saha_ratio_1)
 print(f'Ratio 2000K: {ratio_T2000}')
@@ -107,14 +106,15 @@ P_e_arr = [20,200,2000]  # in dynes/cm2
 # Calculate the Saha ratios for each input P_e
 saha_ratio_2 = np.array([saha(T, P_e, g_i, g_ii) for P_e in P_e_arr])
 # Plot
-plot_saha(fig_num=2, P_e_arr=P_e_arr, T=T, ratio_arr=saha_ratio_2)
+plot_ratio(fig_num=2, P_e_arr=P_e_arr, T=T, ratio_arr=saha_ratio_2)
 
 
 # Question 6
+print('\nQuestion 6')
 # Calculate ratio for p_E = 200
 ratio_total = Ntotal_ratio(saha_ratio_1)
 # Plot
-plot_saha(fig_num=1, P_e_arr=P_e, T=T, ratio_arr=[ratio_total], q_num=6)
+plot_ratio(fig_num=1, P_e_arr=P_e, T=T, ratio_arr=[ratio_total], q_num=6)
 # Get ratio at T=8000 K
 ratio_T8000 = get_ratio(8000, T, ratio_total)
 print(f'At 8000K: {ratio_T8000*100:.2f} %')

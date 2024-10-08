@@ -40,7 +40,8 @@ def plot_ratio(ni, nj, Tk, k=k, fig_num=1):
     plt.plot(Tk, ratio)
     plt.xlabel('Temperature [K]')
     plt.ylabel(r'$n_j/n_i$')
-    plt.title(f'HW #3, Prob 3, Fig {fig_num}: Ratio of the number of atoms for a \n2-level hydrogen atom, with n={ni} and n={nj}')
+    plt.title(f'HW #3, Prob 3, Fig {fig_num}: Ratio of the number of atoms for a 
+              \n2-level hydrogen atom, with n={ni} and n={nj}')
     plt.savefig(dir_path+f'figures/q3_fig{fig_num}.png')
     plt.show()
 

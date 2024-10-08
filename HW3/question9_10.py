@@ -76,6 +76,7 @@ print(f'Average density of Main Sequence Stars: {np.mean(star_density):.2f}')
 
 # Question 10 
 print('\nQuestion 10')
+# b)
 # Core temperatures
 core_temps = core_temp(star_mass, star_radius).to(u.K)
 # Plot
@@ -89,3 +90,10 @@ plt.title('HW #3, Prob 10, Fig 1: Core Temperature vs Mass \nfor Main Sequence S
 plt.legend()
 plt.savefig(dir_path+'figures/q10_fig1.png')
 plt.show()
+
+# c)
+T_find = 17e6 *u.K
+index = np.argmin(np.abs(core_temps - T_find))
+mass_find = star_mass[index]/M_sun
+print(f'Mass of star with core temperature of {T_find:.2e}: {mass_find:.2f} M_sun')
+print('Stellar Type: F5')
