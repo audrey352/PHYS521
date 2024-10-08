@@ -26,7 +26,7 @@ spectral_types = ['O5V', 'B3V', 'A0', 'F0', 'G0', 'K0', 'M0']
 
 def plot_lambda_flux(fig_num, spectral_types=spectral_types, lambda_dict=lambda_dict,
                      flux_dict=flux_dict, scaling_arr=np.ones(100), yscale='log'):
-    plt.figure(figsize=(10, 6), dpi=150)
+    plt.figure(figsize=(10, 6), dpi=200)
 
     # Extra things for figure 3
     if fig_num == 3:

@@ -24,7 +24,7 @@ lamda_balmer = 1. / invlam  # convert to wavelength nm
 
 # Question 2
 # Figure
-fig = plt.figure(figsize=(10, 6), dpi=150)
+fig = plt.figure(figsize=(10, 6), dpi=200)
 # Data
 for lam in lamda_balmer:
     label = 'Balmer Lines' if lam == lamda_balmer[0] else None

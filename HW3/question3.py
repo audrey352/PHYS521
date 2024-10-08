@@ -36,7 +36,7 @@ def plot_ratio(ni, nj, Tk, k=k, fig_num=1):
     # Boltzmann ratio
     ratio = boltz_excite(ni, nj, Tk, k)
     # Plot
-    plt.figure(dpi=150)
+    plt.figure(dpi=200)
     plt.plot(Tk, ratio)
     plt.xlabel('Temperature [K]')
     plt.ylabel(r'$n_j/n_i$')

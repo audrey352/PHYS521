@@ -83,7 +83,7 @@ star_mass = np.array(
 # Calculate rates
 star_fusion_rate = fusion_rate(star_lum, E_bind_erg)
 # Plot
-plt.figure(dpi=150)
+plt.figure(dpi=200)
 plt.plot(star_mass, star_fusion_rate, marker='o', linestyle='-', color='k')
 plt.xlabel(r'Stellar Mass [M$_\odot$]')
 plt.ylabel(r'Fusion Rate [s$^{-1}$]')
@@ -103,7 +103,7 @@ print(f'Range of fusion rates: {range_rate:.2e}')
 # c)
 star_lifetime = lifetime(star_fusion_rate, star_mass)
 # Plot
-plt.figure(dpi=150)
+plt.figure(dpi=200)
 plt.plot(star_mass, star_lifetime, marker='o', linestyle='-', color='k')
 plt.xlabel(r'Stellar Mass [M$_\odot$]')
 plt.ylabel('Lifetime [yr]')

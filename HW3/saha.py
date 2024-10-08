@@ -50,15 +50,15 @@ def plot_saha(fig_num, P_e_arr, T, ratio_arr, q_num=4):
     """
     Plot the Saha ratio for a range of temperatures T
     """
-    plt.figure(dpi=150)
+    plt.figure(dpi=200)
     # Data
     for ratio, P_e in zip(ratio_arr,P_e_arr):
         plt.plot(T, ratio, linewidth=2, label=rf'P$_e$ = {P_e}')
     # Labels & other
     plt.xlabel('T [K]')
-    ylabel = r'H II / H$_{total}$' if fig_num==3 else 'H II / H I'
+    ylabel = r'H II / H$_{total}$' if q_num==6 else 'H II / H I'
     plt.ylabel(ylabel)
-    yscale = 'linear' if fig_num==3 else 'log'
+    yscale = 'linear' if q_num==6 else 'log'
     plt.yscale(yscale)
     plt.legend(title=r'P$_e$ [dynes/cm$^2$]')
     plt.title(f'HW #3, Prob {q_num}, Fig {fig_num}: Saha Ionization for Hydrogen')
@@ -114,7 +114,7 @@ plot_saha(fig_num=2, P_e_arr=P_e_arr, T=T, ratio_arr=saha_ratio_2)
 # Calculate ratio for p_E = 200
 ratio_total = Ntotal_ratio(saha_ratio_1)
 # Plot
-plot_saha(fig_num=3, P_e_arr=P_e, T=T, ratio_arr=[ratio_total], q_num=6)
+plot_saha(fig_num=1, P_e_arr=P_e, T=T, ratio_arr=[ratio_total], q_num=6)
 # Get ratio at T=8000 K
 ratio_T8000 = get_ratio(8000, T, ratio_total)
 print(f'At 8000K: {ratio_T8000*100:.2f} %')
