@@ -41,10 +41,10 @@ def lifetime(rate, mass, M_sun=M_sun):
 print('Question 7')
 # a)
 mass_diff = 4*m_H - m_He
-print(f'Mass difference between 4H and He: {mass_diff:.2e} g')
+print(f'Mass difference between 4H and He: {mass_diff:.2e}')
 # b)
 mass_ratio = mass_diff/(4*m_H)
-print(f'Ratio of mass diff and 4H: {mass_ratio:.2e} g')
+print(f'Ratio of mass diff and 4H: {mass_ratio:.2e}')
 # c)
 E_bind_erg = binding_energy(mass_diff).to(u.erg)
 E_bind_ev = E_bind_erg.to(u.eV)
