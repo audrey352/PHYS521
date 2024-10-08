@@ -61,7 +61,10 @@ star_lum = np.array(
         4.99e5, 3.24e5, 1.47e5,  # O type
         3.25e4, 1580, 480, 96.7,  # B type
         39.4, 12.3,  # A type
-        5.21, 2.56  # F type
+        5.21, 2.56,  # F type
+        1.25, 1.00,  # G type
+        0.552, 0.216,  # K type
+        0.077, 0.032, 0.0076  # M type
     ]
 ) * L_sun  # [erg/s]
 star_mass = np.array(
@@ -69,7 +72,10 @@ star_mass = np.array(
         60, 37, 23,  # O type
         17.5, 7.6, 5.9, 3.8,  # B type
         2.9, 2.0,  # A type
-        1.6, 1.4 # F type
+        1.6, 1.4, # F type
+        1.05, 1.00,  # G type
+        0.79, 0.67,  # K type
+        0.51, 0.40, 0.21  # M type
     ]
 )  # [M_sun]
 

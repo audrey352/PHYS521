@@ -61,7 +61,7 @@ def plot_saha(fig_num, P_e_arr, T, ratio_arr, q_num=4):
     yscale = 'linear' if fig_num==3 else 'log'
     plt.yscale(yscale)
     plt.legend(title=r'P$_e$ [dynes/cm$^2$]')
-    plt.title(f'HW #3, Prob {q_num}: Saha Ionization for Hydrogen')
+    plt.title(f'HW #3, Prob {q_num}, Fig {fig_num}: Saha Ionization for Hydrogen')
     # Save
     plt.savefig(dir_path+f'/figures/q{q_num}_fig{fig_num}.png')
     plt.show()
