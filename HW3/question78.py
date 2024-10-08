@@ -28,11 +28,11 @@ def fusion_rate(L, E):
 def lifetime(rate, mass, M_sun=M_sun):
     """
     Calculate the lifetime of a star
-    Mass needs to be in solar masses
+    Mass in solar masses
     """
     # Number of H nuclei in core
-    num_H_sun = 1.2e56  # sun
-    num_H_star = num_H_sun * mass / M_sun  # star
+    # num_H_sun = 1.2e56  # sun
+    num_H_star = 0.7 * mass * M_sun / m_H  # star
     # Lifetime = (number of H nuclei that can fuse)/(rate of fusion)
     return (num_H_star / rate).to(u.year)  # [yr]
 
@@ -71,27 +71,45 @@ star_mass = np.array(
         2.9, 2.0,  # A type
         1.6, 1.4 # F type
     ]
-) * M_sun  # [g]
+)  # [M_sun]
 
 # a)
 # Calculate rates
-star_fusion_rate = fusion_rate(star_lum, binding_energy(star_mass).to(u.erg))
+star_fusion_rate = fusion_rate(star_lum, E_bind_erg)
 # Plot
 plt.figure(dpi=150)
-plt.plot(star_mass/M_sun, star_fusion_rate, marker='o', linestyle='-', color='k')
+plt.plot(star_mass, star_fusion_rate, marker='o', linestyle='-', color='k')
 plt.xlabel(r'Stellar Mass [M$_\odot$]')
-plt.ylabel(r'Fusion Rate [s$^1$]')
+plt.ylabel(r'Fusion Rate [s$^{-1}$]')
 plt.yscale('log')
 plt.title('HW #3, Prob 8, Fig 1: Fusion Rate vs \nStellar Mass for Main Sequence Stars')
 plt.savefig(dir_path+'/figures/q8_fig1.png')
 plt.show()
 
 # b)
-max_rate = np.max(rxn_rate)
-print(f'Maximum fusion rate: {max_rate:.2e}')
-min_rate = np.min(rxn_rate)
+min_rate = np.min(star_fusion_rate)
 print(f'Minimum fusion rate: {min_rate:.2e}')
+max_rate = np.max(star_fusion_rate)
+print(f'Maximum fusion rate: {max_rate:.2e}')
 range_rate = max_rate - min_rate
 print(f'Range of fusion rates: {range_rate:.2e}')
 
 # c)
+star_lifetime = lifetime(star_fusion_rate, star_mass)
+# Plot
+plt.figure(dpi=150)
+plt.plot(star_mass, star_lifetime, marker='o', linestyle='-', color='k')
+plt.xlabel(r'Stellar Mass [M$_\odot$]')
+plt.ylabel('Lifetime [yr]')
+plt.yscale('log')
+plt.title('HW #3, Prob 8, Fig 2: Lifetime vs Stellar Mass for Main Sequence Stars')
+plt.savefig(dir_path+'/figures/q8_fig2.png')
+plt.show()
+
+# d)
+min_lifetime = np.min(star_lifetime)
+print(f'Minimum lifetime: {min_lifetime:.2e}')
+max_lifetime = np.max(star_lifetime)
+print(f'Maximum lifetime: {max_lifetime:.2e}')
+range_lifetime = max_lifetime/min_lifetime
+print(f'Range of lifetimes: {range_lifetime:.2e}')
