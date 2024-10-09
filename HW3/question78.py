@@ -25,16 +25,13 @@ def fusion_rate(L, E):
     # rate of reaction = luminosity/energy released per nuclei
     return L / E  # [num fusion rxn / s]
 
-def lifetime(rate, mass, M_sun=M_sun):
+def lifetime(mass, lum):
     """
     Calculate the lifetime of a star
-    Mass in solar masses
+    Mass and lum in solar units
     """
-    # Number of H nuclei in core
-    # num_H_sun = 1.2e56  # sun
-    num_H_star = 0.7 * mass * M_sun / m_H  # star
-    # Lifetime = (number of H nuclei that can fuse)/(rate of fusion)
-    return (num_H_star / rate).to(u.year)  # [yr]
+    # Lifetime ~ 10^10 * M / L
+    return 10**10 * mass / lum  # [yr]
 
 
 # Question 7
@@ -101,7 +98,7 @@ range_rate = max_rate - min_rate
 print(f'Range of fusion rates: {range_rate:.2e}')
 
 # c)
-star_lifetime = lifetime(star_fusion_rate, star_mass)
+star_lifetime = lifetime(star_mass, star_lum/L_sun)
 # Plot
 plt.figure(dpi=200)
 plt.plot(star_mass, star_lifetime, marker='o', linestyle='-', color='k')
